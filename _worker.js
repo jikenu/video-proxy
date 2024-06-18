@@ -155,5 +155,5 @@ async function device_status(user_agent_info) {
     return flag;
 }
 export default {
-    fetchAndApply,
+    fetch
 };
