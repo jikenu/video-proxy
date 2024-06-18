@@ -120,3 +120,7 @@ async function replace_response_text(response, upstream_domain, host_name) {
 
   return text
 }
+
+export default {
+  fetch
+}
