@@ -56,16 +56,16 @@ async function fetch(request) {
     new_request_headers.set('Host', upstreamm_domain)
     new_request_headers.set('Referer', url.href)
 
-    let original_response = await fetch(url.href, {
+    let originally_response = await fetch(url.href, {
       method: method,
       headers: new_request_headers,
     })
 
-    let original_response_clone = original_response.clone()
-    let original_text = null
-    let response_headers = original_response.headers
+    let originally_response_clone = originally_response.clone()
+    let originally_text = null
+    let response_headers = originally_response.headers
     let new_response_headers = new Headers(response_headers)
-    let status = original_response.status
+    let status = originally_response.status
 
     // new_response_headers.set('cache-control', 'public, max-age=14400')
     // new_response_headers.set('access-control-allow-origin', '*')
@@ -77,16 +77,16 @@ async function fetch(request) {
     const content_type = new_response_headers.get('content-type')
     if (content_type.includes('text/html') && content_type.includes('UTF-8')) {
       // && content_type.includes('UTF-8')
-      original_text = await replace_response_texts(
-        original_response_clone,
+      originally_text = await replace_response_texts(
+        originally_response_clone,
         upstreamm_domain,
         url_host
       )
     } else {
-      original_text = original_response_clone.body
+      originally_text = originally_response_clone.body
     }
 
-    response = new Response(original_text, {
+    response = new Response(originally_text, {
       status,
       headers: new_response_headers,
     })
