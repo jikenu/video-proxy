@@ -39,16 +39,16 @@ async function fetch(request) {
   //   var upstream_domain = upstream_v4
   // }
 
-  url.host = upstreamm_domain
+  //url.host = upstreamm_domain
 
-  if (blocked_region.includes(region)) {
-    response = new Response(
-      'Access denied: PagesProxy is not available in your region yet.',
-      {
-        status: 403,
-      }
-    )
-  } else {
+  // if (blocked_region.includes(region)) {
+  //   response = new Response(
+  //     'Access denied: PagesProxy is not available in your region yet.',
+  //     {
+  //       status: 403,
+  //     }
+  //   )
+  // } else {
     let method = request.method
     let request_headers = request.headers
     let new_request_headers = new Headers(request_headers)
@@ -90,7 +90,7 @@ async function fetch(request) {
       status,
       headers: new_response_headers,
     })
-  }
+  // }
   return response
 }
 
