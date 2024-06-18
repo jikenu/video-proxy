@@ -79,7 +79,7 @@ async function fetch(request) {
       // && content_type.includes('UTF-8')
       original_text = await replace_response_texts(
         original_response_clone,
-        upstream_domain,
+        upstreamm_domain,
         url_host
       )
     } else {
@@ -94,20 +94,20 @@ async function fetch(request) {
   return response
 }
 
-async function replace_response_texts(response, upstream_domain, host_name) {
+async function replace_response_texts(response, upstreamm_domain, host_name) {
   let text = await response.text()
 
   var i, j
   for (i in replace_dict) {
     j = replace_dict[i]
     if (i == '$upstreamm') {
-      i = upstream_domain
+      i = upstreamm_domain
     } else if (i == '$custom_domain') {
       i = host_name
     }
 
     if (j == '$upstreamm') {
-      j = upstream_domain
+      j = upstreamm_domain
     } else if (j == '$custom_domain') {
       j = host_name
     }
