@@ -1,13 +1,13 @@
 // 反代目标网站ipv6.google.com.hk
-const upstream = 'hanime1.me'
-const upstream_v4 = 'hanime1.me'
+const upstreamm = 'hanime1.me'
+const upstreamm_v4 = 'hanime1.me'
 //www.google.com.hk
 // 访问区域黑名单（按需设置）.
 const blocked_region = []
 
 //资源重定向
 const replace_dict = {
-  $upstream: '$custom_domain',
+  $upstreamm: '$custom_domain',
   'hanime1.me/': '/', //填入你的子域名
 //  'vdownload.hembed.com': 'video.mycf2hj.filegear-sg.me'
 }
@@ -77,7 +77,7 @@ async function fetch(request) {
     const content_type = new_response_headers.get('content-type')
     if (content_type.includes('text/html') && content_type.includes('UTF-8')) {
       // && content_type.includes('UTF-8')
-      original_text = await replace_response_text(
+      original_text = await replace_response_texts(
         original_response_clone,
         upstream_domain,
         url_host
@@ -94,19 +94,19 @@ async function fetch(request) {
   return response
 }
 
-async function replace_response_text(response, upstream_domain, host_name) {
+async function replace_response_texts(response, upstream_domain, host_name) {
   let text = await response.text()
 
   var i, j
   for (i in replace_dict) {
     j = replace_dict[i]
-    if (i == '$upstream') {
+    if (i == '$upstreamm') {
       i = upstream_domain
     } else if (i == '$custom_domain') {
       i = host_name
     }
 
-    if (j == '$upstream') {
+    if (j == '$upstreamm') {
       j = upstream_domain
     } else if (j == '$custom_domain') {
       j = host_name
