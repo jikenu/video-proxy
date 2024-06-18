@@ -39,7 +39,7 @@ async function fetch(request) {
   //   var upstream_domain = upstream_v4
   // }
 
-  url.host = upstream_domain
+  url.host = upstreamm_domain
 
   if (blocked_region.includes(region)) {
     response = new Response(
@@ -53,7 +53,7 @@ async function fetch(request) {
     let request_headers = request.headers
     let new_request_headers = new Headers(request_headers)
 
-    new_request_headers.set('Host', upstream_domain)
+    new_request_headers.set('Host', upstreamm_domain)
     new_request_headers.set('Referer', url.href)
 
     let original_response = await fetch(url.href, {
