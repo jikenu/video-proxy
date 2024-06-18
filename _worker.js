@@ -7,7 +7,7 @@ const blocked_region = ['TK']
 
 //资源重定向
 const replace_dict = {
-  $upstream: '$custom_domain',
+  $upstream: '$custom_domain1',
   'hanime1.me/': '/', //填入你的子域名
   //'vdownload.hembed.com': 'video.mycf2hj.filegear-sg.me'
 }
@@ -104,13 +104,13 @@ async function replace_response_text(response, upstream_domain, host_name) {
     j = replace_dict[i]
     if (i == '$upstream') {
       i = upstream_domain
-    } else if (i == '$custom_domain') {
+    } else if (i == '$custom_domain1') {
       i = host_name
     }
 
     if (j == '$upstream') {
       j = upstream_domain
-    } else if (j == '$custom_domain') {
+    } else if (j == '$custom_domain1') {
       j = host_name
     }
 
