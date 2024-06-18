@@ -3,7 +3,7 @@ const upstream = 'hanime1.me'
 const upstream_v4 = 'hanime1.me'
 //www.google.com.hk
 // 访问区域黑名单（按需设置）.
-const blocked_region = ['TK']
+const blocked_region = []
 
 //资源重定向
 const replace_dict = {
@@ -18,8 +18,6 @@ addEventListener('fetch', (event) => {
 
 async function fetch(request) {
   const region = request.headers.get('cf-ipcountry').toUpperCase()
-//   const ip_address = request.headers.get('cf-connecting-ip')
-//   const user_agent = request.headers.get('user-agent')
 
   let response = null
   let url = new URL(request.url)
@@ -32,20 +30,20 @@ async function fetch(request) {
   }
 
   //检查是否为图片搜索
-  var key = url.href
-  var ikey1 = 'tbm=isch'
-  var ikey2 = '/img'
-  if ((key.search(ikey1) == -1) && (key.search(ikey2) == -1)) {
-    var upstream_domain = upstream
-  } else {
-    var upstream_domain = upstream_v4
-  }
+  // var key = url.href
+  // var ikey1 = 'tbm=isch'
+  // var ikey2 = '/img'
+  // if ((key.search(ikey1) == -1) && (key.search(ikey2) == -1)) {
+  //   var upstream_domain = upstream
+  // } else {
+  //   var upstream_domain = upstream_v4
+  // }
 
   url.host = upstream_domain
 
   if (blocked_region.includes(region)) {
     response = new Response(
-      'Access denied: WorkersProxy is not available in your region yet.',
+      'Access denied: PagesProxy is not available in your region yet.',
       {
         status: 403,
       }
